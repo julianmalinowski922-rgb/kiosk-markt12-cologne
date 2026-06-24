@@ -96,7 +96,7 @@ font-size:4rem;
 font-weight:900;
 }
 
-/* REMOVE LINK UNDERLINE FIX */
+/* LINKS */
 a{
 text-decoration:none;
 color:white;
@@ -116,6 +116,14 @@ font-weight:600;
 
 .card:hover{
 transform:translateY(-10px) scale(1.03);
+}
+
+/* ⭐ PREMIUM REVIEW CARD */
+.reviewCardMain{
+background: linear-gradient(135deg, rgba(255,215,0,0.18), rgba(255,255,255,0.06));
+border:1px solid rgba(255,215,0,0.5);
+box-shadow:0 10px 40px rgba(255,215,0,0.08);
+font-weight:800;
 }
 
 /* GRID */
@@ -233,7 +241,13 @@ href="https://www.google.com/maps/dir/?api=1&destination=Schaaffhausenstraße+2a
 <div class="card" onclick="openInfo('speisen')">🍔 Speisen</div>
 <div class="card" onclick="openInfo('drinks')">🥤 Drinks</div>
 <div class="card" onclick="openInfo('tabak')">🚬 Tabak</div>
-<div class="card" onclick="openInfo('standort')">📍 Standort</div>
+
+<!-- ⭐ PREMIUM REVIEW CARD -->
+<div class="card reviewCardMain" onclick="openInfo('reviews')">
+⭐ 4.6 Google Bewertungen<br>
+<span style="font-size:12px;opacity:0.8;">Tippen für Rezensionen</span>
+</div>
+
 </div>
 </section>
 
@@ -296,7 +310,6 @@ status.className="status closed";
 bar.innerText="🔴 LIVE: Geschlossen – öffnet 08:00";
 hours.innerHTML="🔴 Geschlossen<br>Öffnet um 08:00";
 }
-
 }
 
 updateLive();
@@ -313,7 +326,18 @@ if(type==="kiosk") html="🏪 Kiosk – Getränke, Snacks & Alltag.";
 if(type==="speisen") html="🍔 Speisen – frische Snacks & warme Optionen.";
 if(type==="drinks") html="🥤 Drinks – kalt & jederzeit verfügbar.";
 if(type==="tabak") html="🚬 Tabakwaren – große Auswahl vor Ort.";
-if(type==="standort") html="📍 Direkt in Köln-Chorweiler – leicht erreichbar.";
+
+if(type==="reviews") html=`
+⭐ 4.6 / 5 Bewertung<br><br>
+
+<b>Janette A.</b><br>★★★★★<br>Sehr sauber und freundlich.<br><br>
+
+<b>Klaus G.</b><br>★★★★★<br>Schneller DHL Service.<br><br>
+
+<b>PAMA SINGH</b><br>★★★★☆<br>Vape war leider verbrannt.<br><br>
+
+👉 Basierend auf Google Bewertungen
+`;
 
 document.getElementById("content").innerHTML=html;
 }
@@ -322,7 +346,7 @@ function closeInfo(){
 document.getElementById("popup").style.display="none";
 }
 
-/* 3D */
+/* 3D BACKGROUND */
 const c=document.getElementById("scene");
 const ctx=c.getContext("2d");
 
